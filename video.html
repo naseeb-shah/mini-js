@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://kit.fontawesome.com/9ad79c0b91.js" crossorigin="anonymous"></script>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-color: rgba(227, 227, 122, 0.501);
+    }
+
+    .z {
+        margin-top: 20px;
+        border-left: 5px solid blueviolet;
+    }
+
+    .main {
+        color: white;
+        margin-top: 20px;
+        border-right: 5px solid blueviolet;
+    }
+
+    #s {
+        background-color: rgba(147, 157, 88, 0.616);
+        margin: 100px 10% 10% 10%;
+    }
+
+    #s>div {
+        background-color: inherit;
+        display: flex;
+        /* background-color: rgb(250,250,250); */
+
+    }
+
+    .k>p,
+    .k>h3 {
+        background-color: blanchedalmond;
+        color: black;
+        margin-left: 10%;
+        width: 80%;
+
+    }
+
+    #cop {
+        text-align: center;
+    }
+
+    .navbar>* {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        transition: all 1s;
+    }
+
+    .wrapper {
+        width: 100%;
+        max-width: 1250px;
+        margin: 0 auto;
+        /*   background: blue; */
+    }
+
+    .d-flex {
+        display: flex;
+    }
+
+    .space-between {
+        justify-content: space-between;
+    }
+
+    .align-items {
+        align-items: center;
+    }
+
+    .navbar {
+        background-color: #202020;
+        padding: 12px 10px;
+    }
+
+    .navbar__left {
+        display: flex;
+        align-items: center;
+        /*   background: blue; */
+        flex: 1;
+    }
+
+    .navleftham {
+        color: white;
+        font-size: 1.3em;
+    }
+
+    .leftlogo {
+        margin-left: 2rem;
+        width: 90px;
+    }
+
+
+    .navcenter {
+        display: flex;
+        justify-content: center;
+        /*   background: red; */
+        margin: 0;
+        /*   width: 50%; */
+        flex: 6;
+    }
+
+    .navcenter__arrow {
+        color: white;
+        font-size: 1.25rem;
+        align-self: center;
+        margin-right: 1.5rem;
+        display: none;
+    }
+
+    .navcenter__input {
+        background: white;
+        width: 70%;
+        max-width: 600px;
+        border: 1px solid #313131;
+        padding: 6px;
+        margin: 0;
+        outline: none;
+        color: #858585;
+        font-size: 1em;
+    }
+
+    .navcenter__input::placeholder {
+        color: #858585;
+        padding-left: 0.2em;
+    }
+
+    .navcenter__input:focus {
+        border: 1px solid #2da0ff;
+    }
+
+    .navcenter__search-btn {
+        padding: 6px 30px;
+        max-width: 10%;
+        font-size: 1em;
+        background: #313131;
+        color: #858585;
+        border: none;
+        margin: 0;
+        max-width: 20%;
+    }
+
+    .navcenter__search-btn:hover i {
+        color: #a5a5a5;
+    }
+
+    .rightnav {
+        flex: 2;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .navrighticon {
+        color: white;
+        font-size: 1.25rem;
+    }
+
+    .navrighticon+.navrighticon {
+        margin-left: 1.5rem;
+    }
+
+    .fa-search.navrighticon {
+        display: none;
+    }
+
+    @media (max-width: 600px) {
+
+
+
+        .fa-search.navrighticon {
+            display: inline;
+        }
+
+        .navcenter {
+            display: none;
+        }
+    }
+</style>
+
+<body>
+    <nav class="navbar">
+        <div class="wrapper d-flex space-between justify-content align-items">
+            <div class="navbar__left">
+                <i class="fa fa-bars navleftham" aria-hidden="true"></i>
+                <img src="https://i.ya-webdesign.com/images/youtube-logo-2016-png-8.png" alt="youtube" width="60px"
+                    class="leftlogo">
+            </div>
+            <div class="navcenter">
+                <i class="fa fa-arrow-left navcenter__arrow" aria-hidden="true"></i>
+                <input id="val" autofocus type="text" class="navcenter__input" placeholder="Search">
+                <button onclick="search()" class="navcenter__search-btn"><i class="fa fa-search"
+                        aria-hidden="true"></i></button>
+            </div>
+
+            <div class="rightnav">
+                <i class="fa fa-search navrighticon" aria-hidden="true"></i>
+                <i class="fa fa-video-camera navrighticon" aria-hidden="true"></i>
+                <i class="fa fa-th navrighticon" aria-hidden="true"></i>
+                <i class="fa fa-bell navrighticon" aria-hidden="true"></i>
+                <i class="fa fa-user navrighticon" aria-hidden="true"></i>
+            </div>
+        </div>
+    </nav>
+    <div id="if">
+
+    </div>
+    <div id="s">
+
+    </div>
+    <p style="text-align: center;">Copyright © 2012. Deen Shah Scion. All Rights Reserved</p>
+</body>
+<script>
+    i = localStorage.getItem("i")
+    var list = JSON.parse(localStorage.getItem("sai"))
+    var element = list[i]
+    // document.getElementsById("t").innerHTML=element.snippet.title
+    div = document.createElement("div")
+    div.className = 'k'
+    div.innerHTML = `  <iframe  style="width: 90%;height: 450px;margin-left:5%;"
+        src="https://www.youtube.com/embed/${element.id.videoId}" frameborder="1"></iframe>
+        <h3>${element.snippet.title}</h3>
+    <p calss='pb'>${element.snippet.publishTime.substring(0, 10)}</p>
+    <p calss='ch'><i style='margin-right:5px' class="fa-solid fa-circle-user"></i>${element.snippet.channelTitle}</p>
+
+        `
+    document.getElementById('if').append(div)
+    list.forEach((element, j) => {
+        if (i != j) {
+            //  console.log(element.id.videoId)
+            var k = document.querySelectorAll("z")
+            k.forEach((e) => e.remove())
+            console.log(element)
+            var div = document.createElement("div")
+            div.className = 'main'
+            var di = document.createElement("div")
+            var d = document.createElement("div")
+            d.className = 'info'
+            di.className = 'z'
+            di.innerHTML = ` <a href="video.html"><img   src="${element.snippet.thumbnails.medium.url}" alt=""></a>
+ `
+            di.addEventListener('click', () => { localStorage.setItem('i', j) })
+
+
+            d.innerHTML = `
+               
+                 <div>   <h3 style='margin-left:50px'>${element.snippet.title}</h3>
+    <p calss='pb'style='margin-left:50px'>${element.snippet.publishTime.substring(0, 10)}</p>
+    <p calss='ch' style='margin-left:50px'><i style='margin-right:5px' class="fa-solid fa-circle-user"></i>${element.snippet.channelTitle}</p>
+</div>`
+            div.append(di, d)
+            document.getElementById('s').append(div)
+
+
+
+
+
+
+            // for search functionalty
+
+        }
+    });
+    var appkey = "AIzaSyAYHyJqRGLtVePU1RSoxByWEoR9QJgTEVM"
+    async function search() {
+        val = document.getElementById('val').value
+
+        u_rl = `https://www.googleapis.com/youtube/v3/search?key=${appkey}&q=${val}&type=video&part=snippet&maxResults=20`
+ 
+ console.log(u_rl) 
+       try{
+      res =  await fetch(u_rl)
+      data= await res.json()
+      show(data)
+ }
+ catch(er){
+    console.log(er)
+ }
+
+    }
+
+
+
+function show(data){
+    data=data.items
+    document.querySelector('#if').remove()
+            var k = document.querySelectorAll(".main")
+            k.forEach((e) => e.remove())
+            localStorage.setItem('sai',JSON.stringify(data))
+    data.forEach((element, j) => {
+        // if (i != j) {
+            //  console.log(element.id.videoId)
+            
+            console.log(element)
+            var div = document.createElement("div")
+            div.className = 'main'
+            var di = document.createElement("div")
+            var d = document.createElement("div")
+            d.className = 'info'
+            di.className = 'z'
+            di.innerHTML = ` <a href="video.html"><img   src="${element.snippet.thumbnails.medium.url}" alt=""></a>
+ `
+            di.addEventListener('click', () => { localStorage.setItem('i', j) })
+
+
+            d.innerHTML = `
+               
+                 <div>   <h3 style='margin-left:50px'>${element.snippet.title}</h3>
+    <p calss='pb'style='margin-left:50px'>${element.snippet.publishTime.substring(0, 10)}</p>
+    <p calss='ch' style='margin-left:50px'><i style='margin-right:5px' class="fa-solid fa-circle-user"></i>${element.snippet.channelTitle}</p>
+</div>`
+            div.append(di, d)
+            document.getElementById('s').append(div)
+
+
+
+
+
+
+            // for search functionalty
+
+        // }
+    });
+}
+</script>
+
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://kit.fontawesome.com/9ad79c0b91.js" crossorigin="anonymous"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mover Search </title>
+</head>
+<style>
+    body{
+background-color: #BC70A4;
+    }
+    #se{
+        padding: 5%;
+        background-image: linear-gradient(140deg, #EADEDB 0%, #BC70A4 50%, #BFD641 75%);
+    color: white;
+    opacity: 0.95;
+    }
+    #deen{
+        margin: 5%;
+        height: 60px;
+        font-size: 40px;
+        width: 40%;
+        margin-right: 0%;
+        border-radius: 5px;
+    }
+    #button{
+        margin: 0%;
+       height: 60px;
+        width: 20%;
+        font-size: 40px;
+        font-weight: 500;
+        border: none;
+        color: white;
+        border-radius: 5px;
+        background-color: red;
+    }
+    #fl {
+            border-radius: 5px;
+            position: absolute;
+
+            position: fixed;
+            font-size: 25px;
+            background-color: rgba(255, 0, 0, 0.568);
+
+        }
+
+        #hide {
+            display: none;
+        }
+
+        #jack:hover #hide {
+            border-radius: 5px;
+            border: 1px black solid;
+            margin-left: 150px;
+            position: relative;
+            background-color: rgb(77, 65, 207);
+            display: block;
+        }
+#f{
+    margin-top: 100PX;
+    margin-left: 25%;
+    width: 50%;
+    background-color: white;
+
+}   
+#f>div>img{
+    margin-left: 10%;
+    width: 80%;
+
+}
+#f>div>img{
+    width: 80%;
+
+}
+
+#f>div>p{
+    border: 1px solid grey;
+    text-align: center;
+    font-size: 40px;
+    border-radius: 10px;
+
+}
+#f>div>p:hover{
+    background-color: #EADEDB;
+}
+#j{
+    width: 100%;
+height:max-content;
+
+}
+#e{
+    width: 100%;
+display: none;
+    opacity: .6;
+}
+</style>
+<body>
+    <div class="o" id="fl"><a id='jack' style="text-decoration: none; color: white;"
+        href="https://www.linkedin.com/in/naseeb-khan-deenshah">Deen Shah Scion
+        <span id="hide">Contact on linkedin </span></a> </div>
+    <div id="se">
+        
+    <input  placeholder="move name" type="text" name="" id="deen" autofocus>
+    <button  id='button'onclick="search()">Search</button>
+   </div>
+   <div id ='j'>
+        <div id="er"></div>      
+        <div id="f"></div>
+        <img  id="e" src="https://www.desicomments.com/wp-content/uploads/2022/03/sorry-pics-for-love7-600x400.jpg" alt="">
+    </div>
+    <div id="container-b4a12889c7c91017ac7b0db244ddc59a"></div>
+   
+</body>
+<script>
+    var sai=[]
+   function search (){
+          var c =document.getElementById('deen').value
+        let url = `http://www.omdbapi.com/?apikey=8f7a9021&t=${c}`;
+  var  data=fetch(url)
+
+data.then((r)=>r.json()).then((r)=>{
+if(r.hasOwnProperty('Error')){
+    var k =document.querySelectorAll(".z")
+  k.forEach(e=>{
+      e.remove()
+  })
+   var div=document.createElement('div')
+   div.className="z"
+   div.innerHTML=`<h1 style="color: red; font-size: 80px; text-align: center;" >${r.Error}</h2>`
+   
+   var part=document.getElementById('f')
+   part.append(div)
+    var sanju=document.getElementById("e")
+ sanju.style.display='block'  
+}else{
+    var sanju=document.getElementById("e")
+ sanju.style.display='none' 
+    var k =document.querySelectorAll(".z")
+  k.forEach(e=>{
+      e.remove()
+  })
+    var div=document.createElement('div')
+    div.className="z"
+    console.log(r)
+    rat=document.createElement("p")
+    
+    if(r.imdbRating>8.5){
+rat.innerTEXT=`${r.imdbRating}<i class="fa-solid fa-heart-circle-check"></i>`
+    }else{
+        rat.innerTEXT=r.imdbRating
+    }
+
+    div.innerHTML=`
+ <img src=${r.Poster} alt="">
+            <p class="name">
+                ${r.Title}</p>
+            <p class="date">${r.Released}</p>
+            <p class="date">${rat.innerTEXT}</p>
+           
+            <p class="rat">${r.Genre}</p>`
+            // div.append('rat')
+            document.getElementById("f").append(div)}
+          
+
+
+}
+)
+   
+
+}
+</script>
+
+    
+</html>
